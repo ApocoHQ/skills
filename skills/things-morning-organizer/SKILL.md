@@ -98,9 +98,10 @@ Use Peter Drucker's "Effective Executive" lens — prioritize by contribution, n
 **🔴 Must do** — Deadlines, meetings, items tagged as important. *"What can only I do that, if done really well, will make a real difference?"*
 **🟡 Should do** — High-impact strategic work. *"What is the greatest contribution I can make?"*
 **🟢 Could do** — Non-urgent items, learning, low-priority personal.
-**📋 Daily Routine** — Items from `daily_routine` in config.
 
-Output brief summary:
+Daily Routine items are not listed — they're already created in Things in Step 3.
+
+Output a compact briefing — 15 seconds to read max:
 ```
 Good morning! [weekend note if applicable]
 
@@ -108,22 +109,22 @@ Good morning! [weekend note if applicable]
 
 🔴 Must do (X)
 - **[item]** — [why this matters today]
+- **[item]** — [why this matters today]
 
-🟡 Should do (X)
-- **[item]**
+🟡 Should do (X): [item], [item], [item]
+🟢 Could do (X): [X items in backlog] OR [item], [item] if ≤3
 
-🟢 Could do (X)
-- **[item]**
-
-📋 Daily Routine
-- [routine items from config]
-
-Categorized: X items moved
+✅ [X items categorized · X routine todos created]
 [Ambiguous items if any]
-[Drucker-inspired closing nudge — e.g. "You have 3 must-dos. Protect your morning for the one that only you can do." or "Heavy list today — what can you delegate or defer?"]
+
+[Drucker-inspired closing nudge — e.g. "Two must-dos today. Protect your morning for the budget — it's the one only you can do." or "Heavy list today — what can you delegate or defer?"]
 ```
 
-Keep it tight. 30 seconds to read max.
+**Format rules:**
+- **Must Do** — Each item on its own line with a "why it matters" note.
+- **Should Do** and **Could Do** — Single-line comma-separated. If a category has more than 5 items, show just the count (e.g. "🟢 Could do (7): 7 items in backlog").
+- **Summary line** — Compact one-liner. Omit if nothing was categorized or created.
+- Keep the Drucker quote and closing nudge — they're one line each and set the tone.
 
 ## Creating Todos
 
