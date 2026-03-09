@@ -21,15 +21,33 @@ Fetch the README to understand current requirements, evaluation criteria, and te
 
 Systematically evaluate the candidate's code against the challenge requirements. For each area, note specific examples from their code.
 
-Key areas to assess:
+Key areas to assess, in order of priority:
+
+**High weight** — These reflect senior-level thinking and are the strongest hiring signals:
+- **Code quality & architecture** - TypeScript usage, separation of concerns, abstractions, design patterns
+- **REST API design** - Proper methods, URLs, status codes, error handling, consistency
+- **Database design** - Schema, migrations, seeds, relationships, query efficiency
+
+**Medium weight** — Important but more learnable:
 - **Functional completeness** - Do all required endpoints exist and work?
-- **REST API design** - Proper methods, URLs, status codes, error handling
-- **Code quality** - TypeScript usage, architecture, separation of concerns
-- **Database design** - Schema, migrations, seeds, relationships
-- **Docker & DevOps** - Dockerfile, compose, build optimization
 - **Testing** - Coverage, organization, test types
+
+**Low weight** — Nice to have, not dealbreakers:
+- **Docker & DevOps** - Dockerfile, compose, build optimization
 - **AI integration** - Implementation quality, graceful degradation
 - **Documentation** - README, OpenAPI specs, setup instructions
+
+## Scoring Guide
+
+Apply these criteria **before** generating the assessment:
+
+- **5** - Exceptional: Beyond requirements, senior-level quality
+- **4** - Strong: Meets requirements well, good practices
+- **3** - Acceptable: Basic requirements met, some rough edges
+- **2** - Below Expectations: Missing requirements or significant issues
+- **1** - Unacceptable: Major gaps, not production-ready
+
+The **Overall** score is not an average. It reflects holistic judgment weighted by category priority. A weak score on a high-weight category pulls the overall down more than a weak score on a low-weight one.
 
 ## Step 3: Generate Initial Assessment
 
@@ -37,62 +55,9 @@ Write the assessment to a file named `review-[candidate-name-or-repo].md` in the
 
 Frame the tone accordingly: clear and factual, but leave room for the reviewer to add context, adjust scores, and refine the recommendation.
 
-```markdown
-# Backend Code Challenge — Initial Assessment
-
-> ⚠️ Draft — for reviewer eyes only. Not yet sent to decision makers.
-
-## Candidate: [name if known]
-## Repository: [repo link]
-## Assessed: [date]
-
-## First Impression
-[2-3 sentences on overall impression]
-
-## Scores
-
-| Category | Score (1-5) | Notes |
-|----------|-------------|-------|
-| Functional Correctness | | |
-| REST API Design | | |
-| Code Quality | | |
-| Database Design | | |
-| Docker & DevOps | | |
-| Testing | | |
-| AI Integration | | |
-| Documentation | | |
-| **Overall** | | |
-
-## Strengths
-- [Specific examples]
-
-## Areas for Improvement
-- [Constructive feedback with examples]
-
-## Red Flags (if any)
-- [Critical concerns]
-
-## Preliminary Recommendation
-[ ] Strong Hire  [ ] Hire  [ ] Lean Hire  [ ] Lean No Hire  [ ] No Hire
-
-[Reasoning — reviewer should validate before sending]
-
-## Suggested Interview Discussion Points
-[Topics to explore if candidate advances]
-
----
-*Reviewer notes:* <!-- add any context or adjustments here -->
-```
+Use the template at `assets/review-template.md` for the output structure.
 
 Once the file is written, let the reviewer know it's ready and remind them to look it over before forwarding.
-
-## Scoring Guide
-
-- **5** - Exceptional: Beyond requirements, senior-level quality
-- **4** - Strong: Meets requirements well, good practices
-- **3** - Acceptable: Basic requirements met, some rough edges
-- **2** - Below Expectations: Missing requirements or significant issues
-- **1** - Unacceptable: Major gaps, not production-ready
 
 ## Review Principles
 
