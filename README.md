@@ -34,6 +34,12 @@ Features:
 
 **Use when:** starting your day, triaging todos, organizing tasks by area and priority, adding new todos.
 
+### 📝 meeting-minutes
+
+Got a meeting recording or transcript? This skill turns it into a clean, structured set of meeting minutes — decisions, action items, and key discussion points preserved verbatim. Works with `.vtt` files from Zoom, Teams, or any WebVTT-compatible recorder. Handles multilingual transcripts by translating to English automatically. Runs as a multi-stage pipeline to keep context lean even for hour-long meetings.
+
+**Use when:** processing a meeting transcript, extracting action items, creating meeting notes, summarizing a recorded call.
+
 ## License
 
 [MIT](LICENSE)
