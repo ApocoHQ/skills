@@ -34,6 +34,6 @@ The solution to the problem, from user's perspective.
 
 ## Implementation Decisions
 
-Implementation decisions should not be overly perspective, we want those decisions to be durable.
+Implementation decisions should not be overly prescriptive, we want those decisions to be durable.
 
 </prd-template>
