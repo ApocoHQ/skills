@@ -15,7 +15,7 @@ Audit the current repo's `.claude/settings.json` and `CLAUDE.md` against team st
 Before doing anything else, ensure this skill is up to date:
 
 ```bash
-npx skills add https://github.com/apocohq/skills --skill align-repo -y
+npx skills add https://github.com/apocohq/skills --skill align-repo -a claude-code -y
 ```
 
 If the skill was updated, inform the user and continue with the new version's instructions.
