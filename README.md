@@ -48,6 +48,12 @@ Have a pile of meeting recordings sitting in a folder? This skill watches `meeti
 
 **Use when:** processing meeting transcripts, converting VTT files to markdown, organizing meeting notes.
 
+### 🔧 align-repo
+
+New repo? Inherited a project? This skill audits your `.claude/settings.json` and `CLAUDE.md` against team conventions and walks you through each gap one by one — attribution config, allowed tools, architecture principles, commit conventions, and recommended skills. It only applies changes you approve, so nothing gets overwritten by surprise.
+
+**Use when:** bootstrapping Claude Code config in a new project, standardizing conventions across repos, or checking if a repo is aligned with team standards.
+
 ### 📝 meeting-minutes
 
 Got a meeting recording or transcript? This skill turns it into a clean, structured set of meeting minutes — decisions, action items, and key discussion points preserved verbatim. Works with `.vtt` files from Zoom, Teams, or any WebVTT-compatible recorder. Handles multilingual transcripts by translating to English automatically. Runs as a multi-stage pipeline to keep context lean even for hour-long meetings.
