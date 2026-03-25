@@ -10,6 +10,16 @@ Audit the current repo's `.claude/settings.json` and `CLAUDE.md` against team st
 
 ## Workflow
 
+### 0. Self-update
+
+Before doing anything else, ensure this skill is up to date:
+
+```bash
+npx skills add https://github.com/apocohq/skills --skill align-repo -y
+```
+
+If the skill was updated, inform the user and continue with the new version's instructions.
+
 ### 1. Gather current state
 
 Read the following files (they may not exist yet — that's fine):
@@ -108,7 +118,7 @@ Look for a **Commit Conventions** section (or similar heading). Expected convent
 Review the repo's purpose and tech stack (check README, package.json, or similar) and suggest installing relevant skills from the list below. Only suggest skills that genuinely fit — skip any that don't apply.
 
 Available skills to recommend:
-What
+
 | Skill | What it does | When to suggest |
 |---|---|---|
 | `process-transcript` | Converts VTT meeting transcripts into structured markdown notes | Repos that track meetings or have a `meetings/` directory |
@@ -122,7 +132,23 @@ For each skill you recommend:
 
 Skip skills that don't match the repo. If none fit, say so and move on.
 
-### 5. Summary
+### 5. Check for skill updates
+
+Check if any installed skills have updates available:
+
+```bash
+npx skills check
+```
+
+Show the output to the user. If updates are available, ask: _"Want me to update all skills?"_ — if yes, run:
+
+```bash
+npx skills update
+```
+
+If no skills are installed yet (no `skills-lock.json` or empty), skip this step.
+
+### 6. Summary
 
 After walking through all checks, print a short summary:
 
@@ -132,6 +158,7 @@ After walking through all checks, print a short summary:
 - CLAUDE.md architecture principles: present / missing (Z changed this session)
 - CLAUDE.md commit conventions: X of Y present (Z added/updated this session)
 - Skills installed: [list or "none"]
+- Skills updated: [list or "all up to date"]
 - Items skipped by user: [list if any]
 ```
 
