@@ -92,16 +92,13 @@ If an entire section is missing, propose adding it as a whole block and ask for 
 
 #### 3a. Architecture Principles
 
-Look for a **Separation of Concerns & DRY Principle** section (or similar heading). Expected content:
+Look for a **Separation of Concerns & DRY Principle** section (or similar heading). If missing or incomplete, propose adding:
 
-> ## Separation of Concerns & DRY Principle
->
-> This system is a modular component system following the DRY (Don't Repeat Yourself) principle. Each piece has a single responsibility. You should be able to swap out any component without rewriting others.
+```markdown
+## Separation of Concerns & DRY Principle
 
-Check for:
-1. **DRY principle** stated explicitly.
-2. **Single responsibility** — each component has one job.
-3. **Swappability** — components can be replaced without rewriting others.
+This system is a modular component system following the DRY (Don't Repeat Yourself) principle. Each piece has a single responsibility. You should be able to swap out any component without rewriting others.
+```
 
 #### 3b. Commit Conventions
 
@@ -112,6 +109,29 @@ Look for a **Commit Conventions** section (or similar heading). Expected convent
 3. **Body**: Optional concise bullet points for non-trivial changes.
 4. **Trailer**: Configured via `.claude/settings.json` `attribution` — do not add manually.
 5. **Branch naming**: `type/short-description` (e.g., `feat/session-history`, `fix/stale-timer`). Same type prefixes as commits.
+
+#### 3c. Meeting Format (conditional)
+
+**Skip this if the repo has no `meetings/` directory or doesn't deal with meeting notes.**
+
+Look for a **Meeting Format** section in `CLAUDE.md`. If missing or incomplete, propose adding:
+
+```markdown
+## Meeting Format
+
+---
+date: "YYYY-MM-DD"
+attendees:
+  - First Last
+  - First Last
+---
+
+# Meeting Title
+
+One concise paragraph summarizing the meeting.
+
+## Transcript / Notes / Meeting Minutes
+```
 
 ### 4. Recommend skills
 
