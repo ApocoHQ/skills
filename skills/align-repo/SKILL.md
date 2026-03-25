@@ -6,42 +6,36 @@ description: |
 
 # Align Repo Conventions
 
-Audit the current repo's `.claude/settings.json` and `CLAUDE.md` against team standards, then walk the user through each gap one at a time, applying fixes only after confirmation.
+Audit the current repo's `.claude/settings.json` and `CLAUDE.md` against team standards.
 
-## Workflow
+## Execution Rules
 
-### 0. Self-update
+- **Execute the checklist strictly step by step.**
+- Present ONE item per message. Show its status, and if action is needed, ask and **STOP**.
+- Do not present the next item until the user has responded.
+- If an item is already aligned, say so and immediately proceed to the next item in the same message.
+- If an item needs action, show current vs expected and ask: _"Want me to align this?"_
+- Never batch multiple action items into one message.
+- Never auto-apply changes — every modification requires explicit user confirmation.
+- **Merge, don't overwrite** — add missing keys without clobbering existing ones.
+- **Preserve existing content** in CLAUDE.md — don't remove or reorder existing sections.
 
-Before doing anything else, ensure this skill is up to date:
+## Checklist
 
-```bash
-npx skills add https://github.com/apocohq/skills --skill align-repo -a claude-code -y
-```
+- [ ] **0. Self-update** — Run: `npx skills add https://github.com/apocohq/skills --skill align-repo -a claude-code -y`. If updated, tell the user: _"align-repo was updated. Please start a new session and re-run `/align-repo` to use the latest version."_ **Stop — do not continue with outdated instructions.**
+- [ ] **1. Gather state** — Read `.claude/settings.json`, `CLAUDE.md`, and check for `.claude/settings.local.json` (note existence, don't modify). If `.claude/settings.json` doesn't exist, ask if you should create it. If `CLAUDE.md` doesn't exist, ask if you should create it.
+- [ ] **2. Attribution config** — Check `.claude/settings.json` for the expected `attribution` block (see Reference A).
+- [ ] **3. Allowed tools** — Check `allowedTools` as a set (see Reference B). Report missing entries and flag extra entries (don't remove extras — they may be project-specific).
+- [ ] **4. Architecture principles** — Check `CLAUDE.md` for a Separation of Concerns & DRY section (see Reference C).
+- [ ] **5. Commit conventions** — Check `CLAUDE.md` for a Commit Conventions section covering all 5 items (see Reference D).
+- [ ] **6. Meeting format** — **Skip if no `meetings/` directory.** Check `CLAUDE.md` for a Meeting Format section (see Reference E).
+- [ ] **7. Recommend skills** — Review repo purpose/tech stack. For each relevant skill from Reference F, explain why it fits and ask to install. Skip skills that don't match.
+- [ ] **8. Check skill updates** — Run `npx skills check`. If updates available, ask to run `npx skills update`. Skip if no `skills-lock.json`.
+- [ ] **9. Summary** — Print the alignment summary (see Reference G).
 
-If the skill was updated, inform the user and continue with the new version's instructions.
+## References
 
-### 1. Gather current state
-
-Read the following files (they may not exist yet — that's fine):
-
-- `.claude/settings.json`
-- `CLAUDE.md` (repo root)
-
-Also check for `.claude/settings.local.json` (note its existence but don't modify it).
-
-### 2. Check settings.json
-
-Compare against each expected setting below **one by one**. For each item:
-
-1. Show the **current value** (or "missing" if absent).
-2. Show the **expected value**.
-3. Ask the user: _"Want me to align this?"_ — wait for their answer before moving on.
-
-If `.claude/settings.json` doesn't exist, ask the user if you should create it before proceeding.
-
-#### Expected settings
-
-**Attribution — commit trailer:**
+### A. Expected attribution
 
 ```json
 {
@@ -52,7 +46,7 @@ If `.claude/settings.json` doesn't exist, ask the user if you should create it b
 }
 ```
 
-**Allowed tools — safe git & GitHub read operations:**
+### B. Expected allowed tools
 
 ```json
 {
@@ -75,24 +69,7 @@ If `.claude/settings.json` doesn't exist, ask the user if you should create it b
 }
 ```
 
-When comparing `allowedTools`, treat them as a set — order doesn't matter. Report:
-- **Missing** entries the repo should have.
-- **Extra** entries the repo has but aren't in the standard set (flag but don't remove — these may be intentional project-specific additions).
-
-### 3. Check CLAUDE.md sections
-
-If `CLAUDE.md` doesn't exist, ask the user if you should create it with a minimal scaffold before proceeding.
-
-Check each section below in order. For each item within a section:
-1. Show whether it's **present**, **partially covered**, or **missing**.
-2. If missing or incomplete, show the suggested text.
-3. Ask the user: _"Want me to add/update this?"_ — wait for confirmation.
-
-If an entire section is missing, propose adding it as a whole block and ask for confirmation before moving to the next section.
-
-#### 3a. Architecture Principles
-
-Look for a **Separation of Concerns & DRY Principle** section (or similar heading). If missing or incomplete, propose adding:
+### C. Expected architecture principles
 
 ```markdown
 ## Separation of Concerns & DRY Principle
@@ -100,21 +77,19 @@ Look for a **Separation of Concerns & DRY Principle** section (or similar headin
 This system is a modular component system following the DRY (Don't Repeat Yourself) principle. Each piece has a single responsibility. You should be able to swap out any component without rewriting others.
 ```
 
-#### 3b. Commit Conventions
+### D. Expected commit conventions
 
-Look for a **Commit Conventions** section (or similar heading). Expected conventions:
+```markdown
+## Commit Conventions
 
-1. **Conventional Commits format**: `type(scope): short summary` — types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `revert`, `style`, `perf`, `ci`, `build`.
-2. **Scope**: Optional but encouraged (e.g., `feat(ui):`, `fix(hook):`, `docs(design):`).
-3. **Body**: Optional concise bullet points for non-trivial changes.
-4. **Trailer**: Configured via `.claude/settings.json` `attribution` — do not add manually.
-5. **Branch naming**: `type/short-description` (e.g., `feat/session-history`, `fix/stale-timer`). Same type prefixes as commits.
+- **Conventional Commits**: `type(scope): short summary` — types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, `revert`, `style`, `perf`, `ci`, `build`.
+- **Scope**: Optional but encouraged (e.g., `feat(ui):`, `fix(hook):`, `docs(design):`).
+- **Body**: Optional concise bullet points for non-trivial changes.
+- **Trailer**: Configured via `.claude/settings.json` `attribution` — do not add manually.
+- **Branch naming**: `type/short-description` (e.g., `feat/session-history`, `fix/stale-timer`). Same type prefixes as commits.
+```
 
-#### 3c. Meeting Format (conditional)
-
-**Skip this if the repo has no `meetings/` directory or doesn't deal with meeting notes.**
-
-Look for a **Meeting Format** section in `CLAUDE.md`. If missing or incomplete, propose adding:
+### E. Expected meeting format
 
 ```markdown
 ## Meeting Format
@@ -133,11 +108,7 @@ One concise paragraph summarizing the meeting.
 ## Transcript / Notes / Meeting Minutes
 ```
 
-### 4. Recommend skills
-
-Review the repo's purpose and tech stack (check README, package.json, or similar) and suggest installing relevant skills from the list below. Only suggest skills that genuinely fit — skip any that don't apply.
-
-Available skills to recommend:
+### F. Available skills
 
 | Skill | What it does | When to suggest |
 |---|---|---|
@@ -145,46 +116,18 @@ Available skills to recommend:
 | `ralph-it` | Picks the next user story from a PRD GitHub issue, implements it, and opens a PR | Repos that use GitHub issues for PRDs or have structured user stories |
 | `write-a-prd` | Interviews the user and writes a PRD, then submits it as a GitHub issue | Any repo that plans features via PRDs or GitHub issues |
 
-For each skill you recommend:
-1. Explain **why** it fits this repo (one sentence).
-2. Show the install command: `npx skills add https://github.com/apocohq/skills --skill <skill-name>`
-3. Ask the user: _"Want me to install this?"_ — if yes, run the command.
+Install command: `npx skills add https://github.com/apocohq/skills --skill <skill-name> -a claude-code -y`
 
-Skip skills that don't match the repo. If none fit, say so and move on.
-
-### 5. Check for skill updates
-
-Check if any installed skills have updates available:
-
-```bash
-npx skills check
-```
-
-Show the output to the user. If updates are available, ask: _"Want me to update all skills?"_ — if yes, run:
-
-```bash
-npx skills update
-```
-
-If no skills are installed yet (no `skills-lock.json` or empty), skip this step.
-
-### 6. Summary
-
-After walking through all checks, print a short summary:
+### G. Summary template
 
 ```
 ## Alignment Summary
-- settings.json: X of Y settings aligned (Z changed this session)
-- CLAUDE.md architecture principles: present / missing (Z changed this session)
-- CLAUDE.md commit conventions: X of Y present (Z added/updated this session)
+- settings.json attribution: [aligned / changed / skipped]
+- settings.json allowed tools: [aligned / changed / skipped]
+- CLAUDE.md architecture principles: [present / added / skipped]
+- CLAUDE.md commit conventions: [present / added / skipped]
+- CLAUDE.md meeting format: [present / added / skipped / n/a]
 - Skills installed: [list or "none"]
 - Skills updated: [list or "all up to date"]
 - Items skipped by user: [list if any]
 ```
-
-## Important Notes
-
-- **Never auto-apply changes.** Every modification requires explicit user confirmation.
-- **Preserve existing content.** When editing CLAUDE.md, don't remove or reorder sections the user already has — only add or update the conventions section.
-- **Merge, don't overwrite** settings.json — add missing keys without clobbering existing ones (e.g., project-specific `allowedTools` entries should be kept).
-- If the user declines an item, note it in the summary and move on without further persuasion.
