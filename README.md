@@ -8,13 +8,19 @@ Practical skills that teach AI agents to get things done for you. Built on the [
 npx skills add apocohq/skills
 ```
 
-Also works directly in [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenCode](https://opencode.ai), and other AI tool that support the format.
+Also works directly in [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenCode](https://opencode.ai), and other AI tools that support the format.
 
 ## Skills
 
+### 🗂️ dir-tree-index
+
+Working in a large repo and losing track of where things live? This skill generates or updates distributed `STRUCTURE.md` files across directories, each with concise one-line summaries of folders and files. It helps LLMs orient quickly in unfamiliar codebases and is especially useful for knowledge repositories where discoverability and navigation matter.
+
+**Use when:** mapping project structure, improving LLM repo orientation, indexing documentation-heavy repos, and keeping folder-level overviews up to date. Especially helpful when used as part of a pre-commit hook.
+
 ### 📬 gmail-multi-inbox
 
-Tired of a messy inbox? This skill scans your Gmail, figures out who's emailing you, and organizes everything into clean Multiple Inbox sections. It generates a Google Apps Script that sets up labels and filters automatically. It can also help you find noisy senders worth unsubscribing from. Keeps a local config, so you can run it again to add new senders or tweak categories over time.
+Tired of a messy inbox? This skill scans your Gmail, figures out who's emailing you, and organizes everything into clean Multiple Inbox sections. It generates a Google Apps Script that sets up labels and filters automatically. It can also help you find noisy senders worth unsubscribing from. It keeps a local config, so you can run it again to add new senders or tweak categories over time.
 
 **Use when:** organizing Gmail, setting up multiple inboxes, managing labels and filters, cleaning up subscriptions.
 
