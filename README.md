@@ -40,6 +40,14 @@ Features:
 
 **Use when:** starting your day, triaging todos, organizing tasks by area and priority, adding new todos.
 
+### 🎙️ process-transcript
+
+Have a pile of meeting recordings sitting in a folder? This skill watches `meetings/incoming/` (and `~/Downloads/`) for `.vtt` transcript files, parses them into clean Markdown with frontmatter, adds a title and summary, and files them into `meetings/` with a date-slug filename. No manual reformatting needed.
+
+**Requires:** [uv](https://docs.astral.sh/uv/) installed on your machine (used to run the VTT parsing script).
+
+**Use when:** processing meeting transcripts, converting VTT files to markdown, organizing meeting notes.
+
 ### 📝 meeting-minutes
 
 Got a meeting recording or transcript? This skill turns it into a clean, structured set of meeting minutes — decisions, action items, and key discussion points preserved verbatim. Works with `.vtt` files from Zoom, Teams, or any WebVTT-compatible recorder. Handles multilingual transcripts by translating to English automatically. Runs as a multi-stage pipeline to keep context lean even for hour-long meetings.
