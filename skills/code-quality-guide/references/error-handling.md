@@ -12,7 +12,7 @@ Fail explicitly and early. Agents silently catch and ignore errors by default �
 - Errors propagate upward with context — each layer adds what it knows (what was being attempted, with which input) rather than swallowing or re-wrapping with less information
 - Errors are logged as structured data — not bare strings; include operation, input identifiers, error type, and stack trace as separate fields
 - Failure modes are explicit — each component's possible failure states are obvious from its interface, not discovered at runtime
-- Retry logic uses exponential backoff with a maximum attempt count and a circuit breaker — never an unbounded retry loop
+- Retry logic uses backoff with a maximum attempt count and a circuit breaker — never an unbounded retry loop
 - Expected errors (validation, auth, timeouts) and unexpected errors (bugs, invariant violations) follow different paths — expected errors produce user-facing messages, unexpected errors alert the team
 - Catch blocks are narrow and specific — catch the specific error type at the specific failure point, not a try/catch around an entire function
 

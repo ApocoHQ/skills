@@ -21,7 +21,7 @@ Code is read 10x more than it's written — optimize for the reader. Over multip
 - Single-letter variables outside trivial loops
 - Deeply nested conditionals (3+ levels)
 - Boolean parameters without context — `doThing(true, false, true)`
-- More than ~3 positional parameters — use an options object or similar
+- More than ~3 positional parameters — use keyword arguments, named parameters, or a structured input
 - Negative or double-negative conditionals — `if (!isNotValid)`
 
 ## See Also

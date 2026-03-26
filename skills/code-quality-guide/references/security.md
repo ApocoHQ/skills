@@ -6,7 +6,7 @@ sources: [OWASP, industry standard practices]
 ---
 
 ## Stance
-Security fundamentals are table stakes, not exotic practices. Auth patterns follow least-privilege principle. Be aware of OWASP top 10. Getting them wrong has outsized consequences compared to other quality issues — non-negotiable regardless of who writes the code.
+Security fundamentals are table stakes, not exotic practices. Auth patterns follow least-privilege principle. Getting them wrong has outsized consequences compared to other quality issues — non-negotiable regardless of who writes the code.
 
 ## What to Look For
 - Secrets live in environment variables or a secret manager — never in code, config files, or git history; `.env` is in `.gitignore` without exception

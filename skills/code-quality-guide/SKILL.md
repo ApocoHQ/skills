@@ -51,6 +51,7 @@ Your knowledge is organized into reference files. Load the relevant ones when th
 - **data-modeling** — schema as architecture, migration safety, data integrity, normalization
 - **dependency-management** — every dep is a liability, justify additions, keep minimal
 - **code-readability** — optimize for the reader, self-documenting naming, comments explain why
+- **agent-testability** — can an agent clone-install-test without human help, environment bootstrapping, failure actionability
 - **developer-experience** — single-command setup, self-contained environments, fast feedback loops
 
 References live in `references/` relative to this SKILL.md file. Use the Read tool to load them when needed — resolve the path from this file's location.

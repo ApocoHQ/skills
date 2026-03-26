@@ -12,7 +12,7 @@ Broad and shallow, not deep and prescriptive. Over-specification kills agent exp
 - Docs are entry points with progressive disclosure — overview first, details available when needed; a README answers "what is this, how do I run it, where do I find things" in under a page
 - CLAUDE.md and AGENTS.md stay under ~50 lines — pointers to deeper docs, not the docs themselves
 - Docs describe architecture, boundaries, and decisions — never step-by-step implementation that goes stale the moment code changes
-- Documentation lives close to what it describes — API docs near the API, module docs in the module, not in a separate docs/ directory that nobody updates
+- Public interfaces have docstrings — functions, classes, and modules document their purpose, parameters, and return values inline; this is the documentation that actually stays in sync with the code
 
 ## Red Flags
 - Documentation that duplicates what's already in the code
