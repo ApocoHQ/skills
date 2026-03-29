@@ -26,12 +26,13 @@ Audit the current repo's `.claude/settings.json` and `CLAUDE.md` against team st
 - [ ] **1. Gather state** — Read `.claude/settings.json`, `CLAUDE.md`, and check for `.claude/settings.local.json` (note existence, don't modify). If `.claude/settings.json` doesn't exist, ask if you should create it. If `CLAUDE.md` doesn't exist, ask if you should create it.
 - [ ] **2. Attribution config** — Check `.claude/settings.json` for the expected `attribution` block (see Reference A).
 - [ ] **3. Allowed tools** — Check `allowedTools` as a set (see Reference B). Report missing entries and flag extra entries (don't remove extras — they may be project-specific).
-- [ ] **4. Architecture principles** — Check `CLAUDE.md` for a Separation of Concerns & DRY section (see Reference C).
-- [ ] **5. Commit conventions** — Check `CLAUDE.md` for a Commit Conventions section covering all 5 items (see Reference D).
-- [ ] **6. Meeting format** — **Skip if no `meetings/` directory.** Check `CLAUDE.md` for a Meeting Format section (see Reference E).
-- [ ] **7. Recommend skills** — Review repo purpose/tech stack. For each relevant skill from Reference F, explain why it fits and ask to install. Skip skills that don't match.
-- [ ] **8. Check skill updates** — Run `npx skills check`. If updates available, ask to run `npx skills update`. Skip if no `skills-lock.json`.
-- [ ] **9. Summary** — Print the alignment summary (see Reference G).
+- [ ] **4. Worktrees convention** — Check `.gitignore` includes `.worktrees/`. Check `CLAUDE.md` for a Worktrees section (see Reference C).
+- [ ] **5. Architecture principles** — Check `CLAUDE.md` for a Separation of Concerns & DRY section (see Reference D).
+- [ ] **6. Commit conventions** — Check `CLAUDE.md` for a Commit Conventions section covering all 5 items (see Reference E).
+- [ ] **7. Meeting format** — **Skip if no `meetings/` directory.** Check `CLAUDE.md` for a Meeting Format section (see Reference F).
+- [ ] **8. Recommend skills** — Review repo purpose/tech stack. For each relevant skill from Reference G, explain why it fits and ask to install. Skip skills that don't match.
+- [ ] **9. Check skill updates** — Run `npx skills check`. If updates available, ask to run `npx skills update`. Skip if no `skills-lock.json`.
+- [ ] **10. Summary** — Print the alignment summary (see Reference H).
 
 ## References
 
@@ -69,7 +70,30 @@ Audit the current repo's `.claude/settings.json` and `CLAUDE.md` against team st
 }
 ```
 
-### C. Expected architecture principles
+### C. Expected worktrees convention
+
+```markdown
+## Worktrees
+
+Use `.worktrees/` for git worktrees. Branch naming follows commit conventions (e.g., `feat/session-history`).
+
+### Setup
+
+After creating a worktree, run project setup:
+
+- **Node.js**: `pnpm install`
+- **Python**: `uv sync`
+
+### Verification
+
+Run tests to confirm a clean baseline before starting work. If tests fail, report failures and ask before proceeding.
+
+### Report
+
+After setup, report: worktree path, test results, and readiness.
+```
+
+### D. Expected architecture principles
 
 ```markdown
 ## Separation of Concerns & DRY Principle
@@ -77,7 +101,7 @@ Audit the current repo's `.claude/settings.json` and `CLAUDE.md` against team st
 This system is a modular component system following the DRY (Don't Repeat Yourself) principle. Each piece has a single responsibility. You should be able to swap out any component without rewriting others.
 ```
 
-### D. Expected commit conventions
+### E. Expected commit conventions
 
 ```markdown
 ## Commit Conventions
@@ -89,7 +113,7 @@ This system is a modular component system following the DRY (Don't Repeat Yourse
 - **Branch naming**: `type/short-description` (e.g., `feat/session-history`, `fix/stale-timer`). Same type prefixes as commits.
 ```
 
-### E. Expected meeting format
+### F. Expected meeting format
 
 ```markdown
 ## Meeting Format
@@ -108,7 +132,7 @@ One concise paragraph summarizing the meeting.
 ## Transcript / Notes / Meeting Minutes
 ```
 
-### F. Available skills
+### G. Available skills
 
 | Skill | What it does | When to suggest |
 |---|---|---|
@@ -118,12 +142,14 @@ One concise paragraph summarizing the meeting.
 
 Install command: `npx skills add https://github.com/apocohq/skills --skill <skill-name> -a claude-code -y`
 
-### G. Summary template
+### H. Summary template
 
 ```
 ## Alignment Summary
 - settings.json attribution: [aligned / changed / skipped]
 - settings.json allowed tools: [aligned / changed / skipped]
+- .gitignore worktrees: [aligned / added / skipped]
+- CLAUDE.md worktrees: [present / added / skipped]
 - CLAUDE.md architecture principles: [present / added / skipped]
 - CLAUDE.md commit conventions: [present / added / skipped]
 - CLAUDE.md meeting format: [present / added / skipped / n/a]
