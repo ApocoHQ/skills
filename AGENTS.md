@@ -1,6 +1,10 @@
 # Skills Repo
 
-This repo contains Claude Code skills. Each skill lives in its own folder under `skills/`.
+This repo contains practical AI agent skills. Each skill lives in its own folder under `skills/`.
+
+The repo is distributed in two formats:
+- **Claude Code plugin** (`practical-skills`) via the Apoco marketplace — see [Plugin Manifest](#plugin-manifest)
+- **[Agent Skills](https://github.com/vercel-labs/agent-skills) format** — compatible with Claude Code, OpenCode, and other tools that support the format
 
 ## Skill Structure
 
