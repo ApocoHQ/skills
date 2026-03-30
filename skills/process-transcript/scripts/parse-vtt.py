@@ -78,6 +78,7 @@ def parse_vtt(path: Path, output_dir: Path | None = None) -> Path:
     lines_out.append("")
     for speaker, said in utterances:
         lines_out.append(f"{speaker}: {said}")
+        lines_out.append("")
 
     # Write .md file to output dir (or next to the .vtt file)
     if output_dir:

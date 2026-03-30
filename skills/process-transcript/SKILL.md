@@ -7,16 +7,16 @@ Process all VTT meeting transcripts from `meetings/incoming/` into structured ma
 
 ## Available scripts
 
-- **`scripts/parse-vtt.py`** — Parses raw VTT files into Markdown files with YAML frontmatter (date, attendees) and a clean `Speaker: text` transcript (no blank lines between turns). Supports `--output-dir` to control where `.md` files are written.
+- **`scripts/parse-vtt.py`** — Parses raw VTT files into Markdown files with YAML frontmatter (date, attendees) and a clean `Speaker: text` transcript (blank line between each turn). Supports `--output-dir` to control where `.md` files are written.
 
 ## Steps
 
 1. **Find VTT files**: Check both `meetings/incoming/` and `~/Downloads/` for `.vtt` files. Present each found file to the user with its **modification/creation timestamp** (use `stat` to get the time) so they can confirm which files to process. Typically only recently downloaded files (last few minutes/hours) are relevant. If none found in either location, tell the user and stop.
 
-2. **Parse VTT files**: Run the bundled script on the confirmed files, always outputting to `meetings/incoming/`:
+2. **Parse VTT files**: Run the bundled script on the confirmed files, always outputting to `meetings/incoming/`. Use **absolute paths** for both the script and the output to avoid working-directory issues:
 
    ```bash
-   uv run scripts/parse-vtt.py --output-dir meetings/incoming <file1>.vtt <file2>.vtt
+   SKILL_SCRIPT="$(ls "${PWD}/.claude/skills/process-transcript/scripts/parse-vtt.py" "${HOME}/.claude/skills/process-transcript/scripts/parse-vtt.py" 2>/dev/null | head -1)" && uv run "$SKILL_SCRIPT" --output-dir meetings/incoming <file1>.vtt <file2>.vtt
    ```
 
    This creates `.md` files in `meetings/incoming/` with frontmatter and transcript already formatted.
