@@ -1,0 +1,12 @@
+{
+  "name": "practical-skills",
+  "description": "Practical skills that teach AI agents to get things done — Gmail organization, morning triage, meeting minutes, code review, design planning, and more.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Apoco",
+    "url": "https://github.com/apocohq"
+  },
+  "repository": "https://github.com/apocohq/skills",
+  "license": "MIT",
+  "keywords": ["gmail", "things3", "productivity", "code-review", "meetings", "design", "prd"]
+}

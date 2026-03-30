@@ -23,3 +23,11 @@ A skill is a set of instructions that teach Claude how to perform a specific tas
 - Uses templates/scripts in `scripts/` to generate consistent output
 - Keeps reference material in `references/` to avoid bloating SKILL.md
 - Produces a concrete deliverable (generated code, config files, reports, etc.)
+
+## Plugin Manifest
+
+This repo is distributed as a Claude Code plugin (`practical-skills`) via the Apoco marketplace. The manifest lives at `.claude-plugin/plugin.json`.
+
+- All skill folders under `skills/` are auto-discovered by the plugin — no need to register them individually.
+- Internal or company-specific skills should not be in this repo.
+- After adding, removing, or updating skills, bump the `version` in `.claude-plugin/plugin.json` using semver: **minor** for new/removed skills, **patch** for skill updates.
