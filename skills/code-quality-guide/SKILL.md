@@ -41,18 +41,18 @@ These principles are always active. They color every assessment you make, regard
 
 Your knowledge is organized into reference files. Load the relevant ones when the conversation touches their domain. Do not load everything upfront — brevity in context enables depth in conversation.
 
-- **testing-strategy** — E2E over unit tests, test real behavior, fewer longer tests
-- **architecture** — module boundaries, explicit interfaces, component design, single responsibility
-- **specification-first** — business spec before code, define success criteria, user stories
-- **documentation-strategy** — broad and shallow, progressive disclosure, lean CLAUDE.md
-- **security** — secrets management, token handling, auth patterns, input validation, OWASP
-- **error-handling** — fail explicitly, structured propagation, clear failure modes
-- **api-design** — APIs as promises, contract stability, versioning, migration paths
-- **data-modeling** — schema as architecture, migration safety, data integrity, normalization
-- **dependency-management** — every dep is a liability, justify additions, keep minimal
-- **code-readability** — optimize for the reader, self-documenting naming, comments explain why
-- **agent-testability** — can an agent clone-install-test without human help, environment bootstrapping, failure actionability
-- **developer-experience** — single-command setup, self-contained environments, fast feedback loops
+- **testing-strategy** — E2E over unit tests, test real behavior, fewer longer tests, schema-per-test isolation, mock flag pattern, test strategy design before test code
+- **architecture** — module boundaries, explicit interfaces, vertical slicing, composition root pattern, event-driven cross-module communication, single responsibility
+- **specification-first** — business spec before code, define success criteria, user stories, spec-first for tests (map features to testable boundaries)
+- **documentation-strategy** — broad and shallow, progressive disclosure, lean CLAUDE.md, docs/ organized by concern, mandatory pre-task reading for agents
+- **security** — secrets management, validated config with conditional requirements, mock defaults for safety, input validation, conservative agent permissions
+- **error-handling** — fail explicitly, structured propagation, centralized API error logging, exhaustive pattern matching, clear failure modes
+- **api-design** — APIs as promises, REST vs RPC-style (tRPC), contract stability, type-safe clients, Zod validation
+- **data-modeling** — schema as architecture, migration safety, data integrity, ORM type inference, event-sourced persistence, time-series snapshots
+- **dependency-management** — every dep is a liability, justify additions, zero-dep domain packages, mandated library conventions, frozen lockfile enforcement
+- **code-readability** — optimize for the reader, self-documenting naming, discriminated unions with exhaustive matching, factory naming conventions, conventional commits
+- **agent-testability** — can an agent clone-install-test without human help, environment bootstrapping, mock flags, MCP as agent interaction surface, AGENTS.md enforcement
+- **developer-experience** — single-command setup, self-contained environments, mock defaults in .env.example, CI mirrors local dev, MCP server as dev entry point
 
 References live in `references/` relative to this SKILL.md file. Use the Read tool to load them when needed — resolve the path from this file's location.
 
@@ -60,7 +60,7 @@ When index files (this list or known-skills.md) are updated, they should be upda
 
 ## Known Skills
 
-Other skills in the ecosystem contain methodology and knowledge you can absorb. Read `known-skills.md` in this skill's directory when you need to check what skill methodologies are available.
+Other skills in the ecosystem contain methodology and knowledge you can absorb. Their SKILL.md files are bundled in `bundled-skills/` relative to this file. Read `known-skills.md` in this skill's directory when you need to check what skill methodologies are available — it lists each bundled skill with its path and what knowledge it carries.
 
 When you absorb a skill's methodology, apply its principles naturally in conversation. Do not announce which methodology you are using. Do not mechanically follow a skill's workflow steps. Load only what's relevant from a skill — not its entire methodology. Do not invoke skills as standalone workflows.
 

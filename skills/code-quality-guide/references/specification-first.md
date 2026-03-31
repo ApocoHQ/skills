@@ -1,8 +1,6 @@
 ---
 domain: specification-first
 last-reviewed: 2026-03-26
-status: draft
-sources: [meeting-2026-03-23-ai-best-practices, write-a-prd skill principles]
 ---
 
 ## Stance
@@ -15,13 +13,17 @@ Define requirements through conversation before writing code. The conversation i
 - Requirements describe what and why, never how — implementation details constrain solutions and go stale immediately
 - Requirements have been pressure-tested before committing — someone has asked "what about edge case X?" and there's an answer
 - When the conversation converges, the result is captured somewhere durable — an issue, a PRD, or at minimum acceptance criteria on the task
+- Spec-first applies to testing too — before writing a test, map the feature to testable boundaries: what do we control (mocks, DI), what do we observe (DB state, API responses, queue counts), are there gaps? Design the test plan, then write the code
+- Structured issue creation from vague problems — explore the codebase for context, ask clarifying questions, synthesize into a structured issue with acceptance criteria, check for duplicates before creating
 
 ## Red Flags
 - Requirements discovered during code review — the definition process failed
 - Jumping straight to implementation without discussing what "done" looks like
+- Writing tests without first understanding what the test can actually control and observe given the project's infrastructure
 
 ## See Also
 - **documentation-strategy** — requirements define what to build; docs help navigate what was built
+- **testing-strategy** — test strategy design is a form of specification
 
 ## Known Gaps
 - Right level of conversation depth for small tasks vs. large features

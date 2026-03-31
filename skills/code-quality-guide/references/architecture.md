@@ -1,8 +1,6 @@
 ---
 domain: architecture
 last-reviewed: 2026-03-26
-status: draft
-sources: [meeting-2026-03-23-ai-best-practices, linkedin-manager domain patterns]
 ---
 
 ## Stance
@@ -11,11 +9,15 @@ Small modules, explicit interfaces, clear boundaries. Agents reason locally — 
 ## What to Look For
 - Modules are small and single-purpose — each file does one thing and stays under 300-400 lines
 - Interfaces are explicit exports or type definitions — never inferred from call-site usage or convention
-- Dependencies point inward — domain logic has zero imports from infrastructure; controllers and adapters depend on domain, never the reverse
+- Dependencies point inward — domain logic has zero imports from infrastructure; controllers and adapters depend on domain, never the reverse. The gold standard: a domain package with zero external dependencies
 - Components are swappable black boxes — understand what a module does from its interface; change its internals without breaking consumers
-- Composition over inheritance — behavior is assembled from small pieces, not extended from base classes
-- Consistent layering throughout — the same architectural pattern (e.g., controller → service → repository) applies everywhere
+- Composition over inheritance — behavior is assembled from small pieces, not extended from base classes. Exception: abstract base classes for genuine shared behavior (e.g., AggregateRoot providing event collection) are appropriate when the hierarchy is shallow and the abstraction is stable
+- Consistent layering throughout — the same architectural pattern (e.g., router → service → DAO) applies everywhere
 - Side effects are pushed to the edges — the core logic is pure; I/O, state mutation, and external calls happen in the outer layers
+- Vertical slicing over horizontal layering — organize features as complete slices (service + domain aggregate + types per module) rather than grouping all services in one place, all repositories in another. Each slice contains everything for one feature
+- Composition roots assemble dependencies — a single factory function per entry point (server, workers, tests) wires all dependencies explicitly. No DI container magic, no service locator. Constructor injection with factory functions
+- Multiple entry points share one context interface — HTTP server, background workers, MCP server, and tests all consume the same `Context` type but wire it differently at their composition root
+- Event-driven communication for cross-module workflows — when modules need to coordinate, they publish domain events rather than calling each other directly. A saga or orchestrator consumes events and enqueues follow-up work
 
 ## Red Flags
 - Circular dependencies or modules importing each other's internals
@@ -31,7 +33,5 @@ Small modules, explicit interfaces, clear boundaries. Agents reason locally — 
 
 ## Known Gaps
 - When monolithic files are acceptable
-- How to handle cross-cutting concerns cleanly
 - Microservices vs monolith guidance
 - How to handle shared utilities without creating a junk-drawer module
-- Composition patterns — when to use DI, factory functions, or event-driven wiring
