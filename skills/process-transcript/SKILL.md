@@ -11,7 +11,7 @@ Process all VTT meeting transcripts from `meetings/incoming/` into structured ma
 
 ## Steps
 
-1. **Find VTT files**: Check both `meetings/incoming/` and `~/Downloads/` for `.vtt` files. Present each found file to the user with its **modification/creation timestamp** (use `stat` to get the time) so they can confirm which files to process. Typically only recently downloaded files (last few minutes/hours) are relevant. If none found in either location, tell the user and stop.
+1. **Find VTT files**: Check both `meetings/incoming/` and `~/Downloads/` for `.vtt` files. **Automatically process, without asking, every `.vtt` file modified within the last 24 hours** (plus anything already sitting in `meetings/incoming/`). List the files you selected with their `stat` timestamps so the user can see what was picked, but do not wait for confirmation. Ignore older files unless the user explicitly asks for them. If no recent files are found in either location, tell the user and stop.
 
 2. **Parse VTT files**: Run the bundled script on the confirmed files, always outputting to `meetings/incoming/`. Use **absolute paths** for both the script and the output to avoid working-directory issues:
 
@@ -31,4 +31,4 @@ Process all VTT meeting transcripts from `meetings/incoming/` into structured ma
 
 4. **Move the file** to `meetings/YYYY-MM-DD-<slug>.md`.
 
-5. **After processing**, report which files were created and ask the user whether to delete the processed VTT files from `meetings/incoming/`.
+5. **After processing**, report which files were created, then **always delete the processed source `.vtt` files** (from `~/Downloads/` and/or `meetings/incoming/`) without asking.
